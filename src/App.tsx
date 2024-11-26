@@ -24,18 +24,18 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <ThemeProvider>
             <SnackbarProvider>
-              <BrowserRouter basename='/quiz-front.github.io'>
+              <BrowserRouter>
                 <Routes>
                   <Route element={<HomeGuard />} >
-                    <Route path='/quiz-front.github.io' element={<LandingView />} />
+                    <Route path='/' element={<LandingView />} />
                   </Route>
                   <Route element={<AuthDashboardGuard />}>
-                    <Route path='/quiz-front.github.io/dashboard' element={<QuizProvider><QuizView /></QuizProvider>} />
-                    <Route path='/quiz-front.github.io/results' element={<ResultView />} />
-                    <Route path='/quiz-front.github.io/patient' element={<PatientView />} />
+                    <Route path='/dashboard' element={<QuizProvider><QuizView /></QuizProvider>} />
+                    <Route path='/results' element={<ResultView />} />
+                    <Route path='/patient' element={<PatientView />} />
                   </Route>
-                  <Route path='/quiz-front.github.io/register' element={<RegisterPage />} />
-                  <Route path='/quiz-front.github.io/login' element={<LoginPage />} />
+                  <Route path='/register' element={<RegisterPage />} />
+                  <Route path='/login' element={<LoginPage />} />
                 </Routes>
               </BrowserRouter>
             </SnackbarProvider>
