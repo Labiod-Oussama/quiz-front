@@ -34,7 +34,7 @@ export default function ResultTable({
     const renderLoading = (
         <TableBody>
             {
-                [...new Array(5)].map((row, index) => (
+                [...new Array(5)].map((_, index) => (
                     <TableRow key={index}>
                         <TableCell>
                             <Skeleton

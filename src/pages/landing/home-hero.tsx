@@ -1,4 +1,4 @@
-import { Box, Button, Container, Stack, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { useResponsive } from 'src/hooks/use-responsive'
 import Grid from '@mui/material/Unstable_Grid2';
 import { paths } from 'src/routes/paths';
@@ -14,7 +14,7 @@ export default function HomeHero() {
                 <Grid container spacing={2}>
                     <Grid xs={12} md={6} >
                         <Typography variant='h3' color='error' gutterBottom>
-                            اختبار الفحص المختصر للحالة العقلية
+                            MMSE اختبار الفحص المختصر للحالة العقلية
                         </Typography>
                         <Typography variant='subtitle1' sx={{ ":first-letter": { color: 'error.main', fontWeight: 'bold' }, lineHeight: '35px' }}>
                             و هو اختبار مصمم من طرف "فولستين" سنة 1975 لتقييم القدرات المعرفية للفرد، وتحديد درجة اضطرابها منها الذاكرة، الانتباه، اللغة، وتحديد قدرة الفرد على الرسم، والتي جاءت في شكل 11 بعدد يجمع 30 سؤال.

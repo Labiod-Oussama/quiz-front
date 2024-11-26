@@ -1,11 +1,10 @@
-import { alpha, Button, Card, CardContent, CardHeader, Checkbox, Divider, IconButton, Stack, StackProps, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { alpha, Card, CardContent, CardHeader, Checkbox, Divider, IconButton, Stack, StackProps, Typography } from '@mui/material'
 import { useContext, useEffect } from 'react'
 import Iconify from 'src/components/iconify/Iconify'
 import Label from 'src/components/label/label'
 import { IQuestion, QuestionProps } from 'src/data/questions'
 import { useBoolean } from 'src/hooks/use-boolean'
 import { useCountdownSeconds } from 'src/hooks/use-count-down'
-import { ReactPainter } from 'react-painter';
 import { Context } from './quiz'
 import PaintComponent from './paint-component'
 
@@ -13,7 +12,6 @@ import PaintComponent from './paint-component'
 interface Props extends QuestionProps {
     answers: boolean[];
     onAnswerChange: (updatedAnswers: boolean[]) => void;
-    // readonly?: boolean;
 }
 
 export default function QuizQuestion({
@@ -25,7 +23,6 @@ export default function QuizQuestion({
     description,
     answers,
     onAnswerChange,
-    // readonly
 }: Props) {
 
     const { readonly } = useContext(Context);
@@ -130,8 +127,6 @@ function renderQuestions(
 
     const { readonly } = useContext(Context);
     const showSubQuestions = useBoolean();
-    const theme = useTheme();
-    const mdUp = useMediaQuery(theme.breakpoints.up('md'));
 
     if (typeof questions === 'object' && 'mainQuestion' in questions) {
         const { mainQuestion, subQuestions } = questions as IQuestion;
@@ -188,7 +183,7 @@ function renderQuestions(
                 }
                 {
                     (type === 'text' && !readonly) && (
-                        <PaintComponent type='text'/>
+                        <PaintComponent type='text' />
                     )
                 }
                 {

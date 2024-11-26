@@ -1,4 +1,4 @@
-import { alpha, Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentProps, DialogProps, DialogTitle, DialogTitleProps, IconButton, ListItemText, SxProps, Theme } from '@mui/material'
+import { alpha, Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentProps, DialogProps, DialogTitle, DialogTitleProps, IconButton } from '@mui/material'
 import React from 'react'
 import { ColorSchema } from 'src/theme/palette';
 import Iconify from '../iconify/Iconify';
@@ -35,7 +35,6 @@ export default function CustomDialog(
         <Dialog
             fullWidth
             open={open}
-            // onClose={onClose}
             maxWidth={maxWidth}
             {...other}
         >

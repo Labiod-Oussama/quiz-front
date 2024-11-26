@@ -1,5 +1,4 @@
 import { alpha, Card, Stack, Typography } from '@mui/material';
-import React from 'react'
 import Iconify from 'src/components/iconify/Iconify';
 import { ColorSchema } from 'src/theme/palette';
 

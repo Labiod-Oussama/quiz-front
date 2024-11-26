@@ -29,14 +29,6 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
 }));
 
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-
-    // necessary for content to be below app bar
-    justifyContent: 'flex-end',
-}));
 
 export default function DashLayout({ children }: { children: React.ReactNode }) {
 
@@ -50,7 +42,6 @@ export default function DashLayout({ children }: { children: React.ReactNode }) 
         <Box sx={{ display: 'flex', minHeight: "90vh" }}>
             <CssBaseline />
             <SideBar open={open.value} onClose={open.onFalse} onOpen={open.onTrue} />
-            {/* <DrawerHeader /> */}
             <Main
                 open={open.value}
                 sx={{

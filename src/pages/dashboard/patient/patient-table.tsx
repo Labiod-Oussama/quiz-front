@@ -28,7 +28,7 @@ export default function PatientTable({
     const renderLoading = (
         <TableBody>
             {
-                [...new Array(3)].map((row, index) => (
+                [...new Array(3)].map((_, index) => (
                     <TableRow key={index}>
                         <TableCell>
                             <Skeleton

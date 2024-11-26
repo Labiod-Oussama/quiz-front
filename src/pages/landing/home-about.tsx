@@ -1,8 +1,6 @@
-import { m } from 'framer-motion';
 import { Container, Stack, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2';
 import { useResponsive } from 'src/hooks/use-responsive';
-import about from 'src/assets/home/about.jpg'
 
 
 export default function HomeAbout() {

@@ -18,7 +18,6 @@ export default function LandingView() {
                 }}
             >
                 <HomeAbout />
-                {/* <HomeFeatures /> */}
 
             </Box>
         </MainLayout>

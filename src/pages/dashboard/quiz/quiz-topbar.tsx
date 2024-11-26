@@ -1,22 +1,11 @@
-import { Card, LinearProgress, linearProgressClasses, Slider, Stack, styled } from '@mui/material';
-import Iconify from 'src/components/iconify/Iconify';
+import { Card, LinearProgress, Stack } from '@mui/material';
 import Label from 'src/components/label/label';
 
 interface Props {
     totalQuestions: number;
     indexQuestion: number;
 }
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    height: 10,
-    borderRadius: 5,
-    [`&.${linearProgressClasses.colorPrimary}`]: {
-        backgroundColor: theme.palette.text.disabled,
-    },
-    [`& .${linearProgressClasses.bar}`]: {
-        borderRadius: 5,
-        backgroundColor: theme.palette.info.main,
-    },
-}));
+
 export default function QuizTopbar({
     totalQuestions,
     indexQuestion

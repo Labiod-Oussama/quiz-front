@@ -1,4 +1,4 @@
-import { Box, BoxProps, Button, useTheme } from '@mui/material'
+import { Box, BoxProps, Button } from '@mui/material'
 import { Stack, styled } from '@mui/system'
 import { useState, useRef } from 'react'
 import Signature, { SignatureRef } from '@uiw/react-signature'
@@ -23,6 +23,9 @@ export default function PaintComponent({
     type?: "paint" | 'text'
 }) {
     const [signature, setSignature] = useState<Blob | null>(null);
+
+    console.log(signature);
+    
     const [isTyping, setIsTyping] = useState(false);
 
     const signatureRef = useRef<SignatureRef | null>(null);
@@ -35,8 +38,6 @@ export default function PaintComponent({
         setIsTyping(false)
     }
 
-    const theme = useTheme();
-    // const mdUp=
 
     return (
         <div>
@@ -60,7 +61,7 @@ export default function PaintComponent({
                             size: 7,
                             thinning: type === 'paint' ? 0.5 : 0.8,
                         }}
-                        onPointerDown={(points) => {
+                        onPointerDown={(_) => {
                             setIsTyping(true)
                         }}
                     />
