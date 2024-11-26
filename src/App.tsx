@@ -24,7 +24,7 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <ThemeProvider>
             <SnackbarProvider>
-              <BrowserRouter>
+              <BrowserRouter basename='/quiz-front.github.io'>
                 <Routes>
                   <Route element={<HomeGuard />} >
                     <Route path='/quiz-front.github.io' element={<LandingView />} />

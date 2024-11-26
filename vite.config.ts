@@ -24,7 +24,8 @@ export default defineConfig({
       }
     },
   },
-  plugins: [react()],
+  plugins: [react(),],
+  base: '/quiz-front.github.io',
   resolve: {
     alias: {
       "src": root,
