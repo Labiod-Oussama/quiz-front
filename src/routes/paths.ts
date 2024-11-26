@@ -1,12 +1,13 @@
 
+const BASE_URL = '/quiz-front.github.io';
 export const paths = {
-    home: '/',
+    home: BASE_URL + '/',
     auth: {
-        register: `/register`,
-        login: `/login`,
+        register: BASE_URL + `/register`,
+        login: BASE_URL + `/login`,
     },
     dashboard: {
-        index: `/dashboard`,
-        result: `/results`
+        index: BASE_URL + `/dashboard`,
+        result: BASE_URL + `/results`
     }
 }
