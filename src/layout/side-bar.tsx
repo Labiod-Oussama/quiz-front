@@ -85,8 +85,7 @@ export default function SideBar({
                         >
                             <Iconify icon="hugeicons:dashboard-square-edit" />
                             <Typography variant="h5" component="div">
-                                إختبار الفحص المختصر للحالة العقلية
-                                {/* {" ("}
+                                النسخة الالكترونية لاختبار الفحص المختصر للحالة العقلية (MMSE)                                {/* {" ("}
                                 {
                                     ['زهايمر', 'خرف', 'باركنسون', 'تصلب لويحي'].map((item, index) => {
                                         return <span key={index}>{" "}{item}{' '}{index !== 3 && '-'}{' '}</span>

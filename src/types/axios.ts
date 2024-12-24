@@ -44,11 +44,15 @@ export const endpoints = {
     },
     patient: {
         getAll: `${API}/user/patients`,
+        getOne: (id: string | number) => `${API}/user/patients/${id}`,
         addOne: `${API}/user/patients`,
+        updateOne: (id: string | number) => `${API}/user/patients/${id}`,
+        removeOne: (id: string | number) => `${API}/user/patients/${id}`,
     },
     quiz: {
         getAll: `${API}/quiz`,
         getOne: (id: string | number) => `${API}/quiz/${id}`,
         saveQuiz: (id: string | number) => `${API}/quiz/${id}/save`,
+        removeOne: (id: string | number) => `${API}/quiz/${id}`,
     }
 };

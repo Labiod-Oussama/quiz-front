@@ -21,6 +21,7 @@ export type PatientType = {
     id?: number | string;
     firstName: string;
     lastName: string;
+    age: number;
     educationLevel: EDUCATIONLEVEL;
     examDate?: Date | null
 }

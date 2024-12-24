@@ -32,11 +32,8 @@ export default function PatientExamCard() {
     return (
         <Card sx={{ maxWidth: 400, mx: 'auto', p: 1 }}>
             <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
-                    إختبار الفحص المختصر للحالة العقلية
-                </Typography>
                 <Box sx={{ mb: 2 }}>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                    <Typography variant="body1" color="text.secondary" gutterBottom textAlign='center'>
                         لبدء الفحص، يرجى تحديد المريض
                     </Typography>
                     <Select

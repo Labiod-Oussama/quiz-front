@@ -54,3 +54,16 @@ export async function saveTest(patientId: string | number, answers: Record<numbe
             })
     })
 }
+
+export async function removeTest(id: string | number): Promise<void> {
+    const URL = endpoints.quiz.removeOne(id);
+    return new Promise((resolve, reject) => {
+        axiosInstance.delete(URL)
+            .then(() => {
+                resolve();
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+}

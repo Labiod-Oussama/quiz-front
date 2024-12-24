@@ -27,10 +27,21 @@ export function useGetAllPatient(): ResponseReturn<PatientType[]> {
     return memoizedValue;
 }
 
-export async function addPatient(intervention: PatientType): Promise<PatientType> {
+export function useGetPatientById(id?: string | number): ResponseReturn<PatientType> {
+    const URL = id ? endpoints.patient.getOne(id) : null
+    const { data, error, isLoading } = useSWR(URL, fetcher, options);
+    const memoizedValue = useMemo(() => ({
+        data: data || {} as PatientType,
+        error,
+        loading: isLoading,
+    }), [data, error, isLoading]);
+    return memoizedValue;
+}
+
+export async function addPatient(patient: PatientType): Promise<PatientType> {
     const URL = endpoints.patient.addOne;
     return new Promise((resolve, reject) => {
-        axiosInstance.post(URL, intervention)
+        axiosInstance.post(URL, patient)
             .then(res => {
                 resolve(res.data)
             })
@@ -38,4 +49,31 @@ export async function addPatient(intervention: PatientType): Promise<PatientType
                 reject(err)
             })
     })
+}
+
+export async function updatePatient(patient: PatientType): Promise<PatientType> {
+    if (!patient.id) throw new Error('id is required');
+    const URL = endpoints.patient.updateOne(patient.id);
+    return new Promise((resolve, reject) => {
+        axiosInstance.put(URL, patient)
+            .then(res => {
+                resolve(res.data)
+            })
+            .catch(err => {
+                reject(err)
+            })
+    })
+}
+
+export async function removePatient(id: string | number): Promise<void> {
+    const URL = endpoints.patient.removeOne(id);
+    return new Promise((resolve, reject) => {
+        axiosInstance.delete(URL)
+            .then(() => {
+                resolve();
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
 }

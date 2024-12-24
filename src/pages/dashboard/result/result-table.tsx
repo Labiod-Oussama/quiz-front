@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import Scrollbar from 'src/components/scrollbar';
 import TableHeadCustom from 'src/components/table/table-head-custom';
-import { Button, Chip, Skeleton } from '@mui/material';
+import { Button, Chip, Skeleton, Stack } from '@mui/material';
 import { QuizDataType } from 'src/types/quiz';
 import { etatResult, getType } from '../quiz/quiz-result';
 import Iconify from 'src/components/iconify/Iconify';
@@ -25,11 +25,13 @@ interface QuizTableProps {
     data: QuizDataType[];
     loading?: boolean;
     handleDetailQuiz?: (quiz: QuizDataType) => void;
+    onRemove?: (id?: string | number) => void;
 }
 export default function ResultTable({
     data,
     loading = false,
-    handleDetailQuiz
+    handleDetailQuiz,
+    onRemove
 }: QuizTableProps) {
     const renderLoading = (
         <TableBody>
@@ -110,14 +112,26 @@ export default function ResultTable({
                                         </TableCell>
                                         <TableCell >{row?.examDate ? new Date(row.examDate).toLocaleString().replace('AM', 'ص').replace('PM', 'م') : 'لا يوجد تاريخ'}</TableCell>
                                         <TableCell>
-                                            <Button
-                                                variant="contained"
-                                                color="error"
-                                                size="small"
-                                                onClick={() => handleDetailQuiz?.(row)}
-                                            >
-                                                تفاصيل
-                                            </Button>
+                                            <Stack direction='row' spacing={1}>
+                                                <Button
+                                                    variant="contained"
+                                                    color="info"
+                                                    size="small"
+                                                    onClick={() => handleDetailQuiz?.(row)}
+                                                >
+                                                    تفاصيل
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    color="error"
+                                                    size="small"
+                                                    onClick={() => {
+                                                        onRemove?.(row.id)
+                                                    }}
+                                                >
+                                                    حذف
+                                                </Button>
+                                            </Stack>
                                         </TableCell>
                                     </TableRow>
                                 ))}

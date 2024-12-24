@@ -1,16 +1,43 @@
 import { Button, Card, CardHeader, Container, Skeleton } from "@mui/material";
 import PatientTable from "./patient-table";
-import { useGetAllPatient } from "src/api/patient/info-patient";
+import { removePatient, useGetAllPatient, useGetPatientById } from "src/api/patient/info-patient";
 import Label from "src/components/label";
 import Iconify from "src/components/iconify/Iconify";
 import CustomDialog from "src/components/dialog/custom-dialog";
 import { useBoolean } from "src/hooks/use-boolean";
 import PatientNewEditForm from "./patient-new-edit-form";
+import { useCallback, useState } from "react";
+import { mutate } from "swr";
+import { endpoints } from "src/types/axios";
+import { enqueueSnackbar } from "notistack";
 
 export default function PatientView() {
     const { data: patients, loading: loadingPatients } = useGetAllPatient();
 
+    const [patientId, setPatientId] = useState<string | number>('');
+
+    const { data: patient, loading: loadingPatient } = useGetPatientById(patientId);
+
     const openAddPatient = useBoolean();
+
+    const openEditPatient = useBoolean();
+
+
+    const handleEditPatient = useCallback((id?: string | number) => {
+        if (!id) return;
+        setPatientId(id);
+        openEditPatient.onTrue();
+    }, [openEditPatient]);
+
+    const handleRemovePatient = useCallback(async (id?: string | number) => {
+        if (!id) return;
+        const confirm = window.confirm('هل انت متأكد من حذف المريض؟');
+        if (confirm) {
+            await removePatient(id);
+            await mutate(endpoints.patient.getAll);
+            enqueueSnackbar('تم حذف المريض بنجاح', { variant: 'success', anchorOrigin: { vertical: 'top', horizontal: 'center' } })
+        }
+    }, []);
     return (
         <>
             <Container
@@ -22,7 +49,7 @@ export default function PatientView() {
                             variant="soft"
                             color="error"
                             sx={{
-                               typography: 'h6',
+                                typography: 'h6',
                                 py: 2,
                                 px: 1
                             }}
@@ -61,6 +88,8 @@ export default function PatientView() {
                     <PatientTable
                         data={patients}
                         loading={loadingPatients}
+                        onEdit={handleEditPatient}
+                        onRemove={handleRemovePatient}
                     />
                 </Card>
                 <CustomDialog
@@ -70,6 +99,17 @@ export default function PatientView() {
                 >
                     <PatientNewEditForm
                         onClose={openAddPatient.onFalse}
+                    />
+                </CustomDialog>
+                <CustomDialog
+                    open={openEditPatient.value}
+                    onClose={openEditPatient.onFalse}
+                    loading={loadingPatient}
+                    maxWidth='xs'
+                >
+                    <PatientNewEditForm
+                        currentPatient={patient}
+                        onClose={openEditPatient.onFalse}
                     />
                 </CustomDialog>
             </Container>

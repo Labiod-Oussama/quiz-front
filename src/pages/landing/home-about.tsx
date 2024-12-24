@@ -18,42 +18,47 @@ export default function HomeAbout() {
             spacing={1}
         >
             <Typography variant="h4" gutterBottom>
-                طريقة تطبيق الاختبار:
+                الهدف من الاختبار:
             </Typography>
             <Typography variant="body1">
-                يطبق هذا الاختبار بصفة فردية وفي قاعة هادئة.
+                تقييم القدرات المعرفية وتحديد  درجة اضطرابها.
+            </Typography>
+            <Typography variant="h4" gutterBottom>
+                شروط تطبيق الاختبار:
+            </Typography>
+            <Typography variant="body1">
+                - يطبق بصفة فردية وفي غرفة هادئة.
             </Typography>
 
             <Typography variant="body1">
-                تُعطى التعليمات مرة واحدة وبطريقة واضحة ودون إعادة أو تساهل. في حال كانت الإجابة غير كاملة وغير واضحة يُنصف الجواب بالنقطة صفر.
-            </Typography>
-
-            <Typography variant="h5" gutterBottom>
-                المهام:
+                - تعطى التعليمة مرة واحدة بطريقة واضحة دون إعادة أو تساهل .
             </Typography>
             <Typography variant="body1">
-                تهدف لتقييم القدرات المعرفية، وتحدد درجة اضطرابها.
-            </Typography>
-
-            <Typography variant="h5" gutterBottom>
-                الوسيلة:
+                - في حال كانت الإجابة غير كاملة لا تعطي نصف العلامة بل تعطى النقطة صفر.
             </Typography>
             <Typography variant="body1">
-                رؤية البيئة معلمة أو قائمة مساعدة (البند 8 و 10 و 11 تتطلب هذا النموذج ليعطي قياس الحالة).
+                - المفحوص راشد يستطيع القراءة والكتابة والحساب.
             </Typography>
 
             <Typography variant="h5" gutterBottom>
-                المفحوص:
+                التعليمة:
             </Typography>
             <Typography variant="body1">
-                إدراك وتحديد القراءة، الكتابة، الحساب.
+                سأطرح عليك بعض الأسئلة لمعرفة كيف تعمل ذاكرتك ، بعضها جد سهل وبعضها أقل سهولة وعليك أن تجيب قدر المستطاع.
             </Typography>
 
             <Typography variant="h5" gutterBottom>
-                المعلومات الخاصة:
+                الوسائل المستخدمة:
             </Typography>
             <Typography variant="body1">
-                شارك بطرح بعض الأسئلة لمعرفة كاملة مثل ما ذاكرتك، بعضياً جد سبل معينة للرسالة وبضعياً أنا الرسالة وعلق أن تجيب قدر المستطاع.
+                ورقة بيضاء ، قلم ـ ممحاة (الأبعاد 8، 10 ، 11 فقط تتطلب هذا ، أما بقية الأبعاد يتم الإجابة عنها شفهيا من طرف الحالة).
+            </Typography>
+
+            <Typography variant="h5" color='warning.main'>
+                ملاحظة:
+            </Typography>
+            <Typography variant="body1">
+                لا يجب عرض الشاشة على الحالة إلا في حالة الأبعاد الأدائية.
             </Typography>
         </Stack>
     );

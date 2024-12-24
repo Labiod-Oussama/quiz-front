@@ -1,15 +1,18 @@
 import { Button, Card, CardHeader, Container, Skeleton } from "@mui/material";
 import Label from "src/components/label";
 import Iconify from "src/components/iconify/Iconify";
-import { useGetAllTest, useGetTestById } from "src/api/quiz/info-quiz";
+import { removeTest, useGetAllTest, useGetTestById } from "src/api/quiz/info-quiz";
 import ResultTable from "./result-table";
 import { useRouter } from "src/hooks/use-router";
 import { useBoolean } from "src/hooks/use-boolean";
 import CustomDialog from "src/components/dialog/custom-dialog";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Quiz from "../quiz/quiz";
 import ExcelExport from "./exported-component";
 import { etatResult, getType } from "../quiz/quiz-result";
+import { mutate } from "swr";
+import { endpoints } from "src/types/axios";
+import { enqueueSnackbar } from "notistack";
 
 export default function ResultView() {
     const { data: tests, loading: loadingTests } = useGetAllTest();
@@ -35,7 +38,18 @@ export default function ResultView() {
                 ['الملاحظة']: etatResult[getType(test.result)].title
             }
         })
-    }, [tests])
+    }, [tests]);
+
+
+    const handleRemoveTest = useCallback(async (id?: string | number) => {
+        if (!id) return;
+        const confirm = window.confirm('هل انت متأكد من حذف الامتحان؟');
+        if (confirm) {
+            await removeTest(id);
+            await mutate(endpoints.quiz.getAll);
+            enqueueSnackbar('تم حذف الامتحان بنجاح', { variant: 'success', anchorOrigin: { vertical: 'top', horizontal: 'center' } })
+        }
+    }, []);
 
     return (
         <>
@@ -99,6 +113,7 @@ export default function ResultView() {
                             setTestId(test.id);
                             openDetailTest.onTrue();
                         }}
+                        onRemove={handleRemoveTest}
                     />
                 </Card>
                 <CustomDialog

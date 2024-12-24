@@ -7,10 +7,10 @@ import Stack from '@mui/material/Stack';
 import LoadingButton from '@mui/lab/LoadingButton';
 import FormProvider from 'src/components/hook-form/form-provider';
 import { MenuItem, TextField } from '@mui/material';
-import { date, mixed, object, string } from 'yup';
+import { date, mixed, number, object, string } from 'yup';
 import { EDUCATIONLEVEL, PatientType } from '../../../types/quiz';
 import { errorProcess } from 'src/utils/error-process';
-import { addPatient } from 'src/api/patient/info-patient';
+import { addPatient, updatePatient } from 'src/api/patient/info-patient';
 import { enqueueSnackbar } from 'notistack';
 import { mutate } from 'swr';
 import { endpoints } from 'src/types/axios';
@@ -27,6 +27,7 @@ export default function PatientNewEditForm({ currentPatient, onClose }: Props) {
   const NewUserSchema = object().shape({
     firstName: string().required('الاسم اجباري'),
     lastName: string().required('اللقب اجباري'),
+    age: number().required('العمر اجباري'),
     educationLevel: mixed<EDUCATIONLEVEL>().oneOf(Object.values(EDUCATIONLEVEL), 'Invalid etat').default(EDUCATIONLEVEL.FIRST_PRIMARY),
     examDate: date().optional()
   });
@@ -35,6 +36,7 @@ export default function PatientNewEditForm({ currentPatient, onClose }: Props) {
     () => ({
       firstName: currentPatient?.firstName || '',
       lastName: currentPatient?.lastName || '',
+      age: currentPatient?.age || 0,
       educationLevel: currentPatient?.educationLevel || EDUCATIONLEVEL.FIRST_PRIMARY,
       examDate: currentPatient?.examDate || undefined
     }),
@@ -54,7 +56,11 @@ export default function PatientNewEditForm({ currentPatient, onClose }: Props) {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await addPatient(data);
+      if (currentPatient) {
+        await updatePatient({ ...currentPatient, ...data });
+      } else {
+        await addPatient(data);
+      }
       await mutate(endpoints.patient.getAll);
       enqueueSnackbar(currentPatient ? 'تم التعديل' : 'تمت الاضافة بنجاح', { variant: 'success', anchorOrigin: { vertical: 'top', horizontal: 'center' } });
       onClose?.();
@@ -98,6 +104,25 @@ export default function PatientNewEditForm({ currentPatient, onClose }: Props) {
                 label="اللقب"
                 error={!!errors.lastName}
                 helperText={errors.lastName?.message}
+              />
+            )}
+          />
+          <Controller
+            name="age"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                type='number'
+                id="age"
+                label="العمر"
+                error={!!errors.age}
+                helperText={errors.age?.message}
+                inputProps={{
+                  min: 0,
+                  max: 100
+                }}
               />
             )}
           />

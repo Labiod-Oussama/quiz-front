@@ -12,16 +12,15 @@ export default function HomeHero() {
         >
             <Container maxWidth='lg' sx={{ p: 5 }}>
                 <Grid container spacing={2}>
-                    <Grid xs={12} md={6} >
-                        <Typography variant='h3' color='error' gutterBottom>
-                            MMSE اختبار الفحص المختصر للحالة العقلية
+                    <Grid xs={12} md={6.5} >
+                        <Typography variant='h4' color='error' gutterBottom>
+                            النسخة الالكترونية لاختبار الفحص المختصر للحالة العقلية (MMSE):
                         </Typography>
                         <Typography variant='subtitle1' sx={{ ":first-letter": { color: 'error.main', fontWeight: 'bold' }, lineHeight: '35px' }}>
-                            و هو اختبار مصمم من طرف "فولستين" سنة 1975 لتقييم القدرات المعرفية للفرد، وتحديد درجة اضطرابها منها الذاكرة، الانتباه، اللغة، وتحديد قدرة الفرد على الرسم، والتي جاءت في شكل 11 بعدد يجمع 30 سؤال.
+                            صممت النسخة الأصلية من طرف فولسن سنة 1975 لتقييم القدرات المعرفية للفرد وتحديد درجة اضطرابها ، يتكون الاختبار من 11 بعد وهي (التوجه الزماني، التوجه المكاني ، التخزين، الانتباه والحساب، التذكر، التسمية ، الإعادة ، فهم اللغة الشفهية ، فهم اللغة المكتوبة ، اللغة المكتوبة ، النسخ) موزعة على 30 سؤال ، تم تكييفه على البيئة الجزائرية و حساب الخصائص السيكومترية من طرف الباحثة فريدة تاقولميمت  سنة 2009.
                         </Typography>
                         <Typography variant='subtitle1' lineHeight='35px'>
-                            ويعتبر هذا الاختبار من أكثر الاختبارات استخداماً في المجال الإكلينيكي لقياس الخرف إذ ترتفع حساسيتة عند ارتفاع درجة الخرف ويقيس بطريقة مطلقة على الأفراد من نفس الثقافة حيث تتغير الدرجة مع مرور الوقت (من غرب آسيا)، 2012، ص 85-84).
-                        </Typography>
+                            ويعتبر من أكثر الاختبارات استخداما في المجال الإكلينيكي ، إذ يتمتع بحساسية عالية في تحديد الخرف وقياس ما يطرأ على الفرد من تغيرات معرفية مع مرور الوقت.                        </Typography>
                         <Button
                             variant='contained'
                             color='error'
@@ -35,8 +34,8 @@ export default function HomeHero() {
                     </Grid>
                     {
                         mdUp &&
-                        <Grid xs={12} md={6} textAlign='center' my={'auto'}>
-                            <img src={'/assets/quiz-vector.svg'} alt='header' width='70%' />
+                        <Grid xs={12} md={4.5} textAlign='center' m={'auto'}>
+                            <img src={'/assets/quiz-vector.svg'} alt='header' width='80%' />
                         </Grid>
                     }
                 </Grid>
