@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
-import 'src/global.css';
+import './global.css';
 import ThemeProvider from './theme'
 import RegisterPage from './pages/auth/register'
 import LoginPage from './pages/auth/login'

@@ -10,6 +10,7 @@ import { useCallback, useState } from "react";
 import { mutate } from "swr";
 import { endpoints } from "src/types/axios";
 import { enqueueSnackbar } from "notistack";
+import { useResponsive } from "src/hooks/use-responsive";
 
 export default function PatientView() {
     const { data: patients, loading: loadingPatients } = useGetAllPatient();
@@ -38,10 +39,12 @@ export default function PatientView() {
             enqueueSnackbar('تم حذف المريض بنجاح', { variant: 'success', anchorOrigin: { vertical: 'top', horizontal: 'center' } })
         }
     }, []);
+
+    const mdUp = useResponsive('up', 'md');
     return (
         <>
             <Container
-                maxWidth='md'
+                maxWidth={mdUp ? 'md' : 'xl'}
             >
                 <Card sx={{ width: 1 }}>
                     <CardHeader title={

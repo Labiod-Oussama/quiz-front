@@ -127,7 +127,7 @@ export default function Quiz({ currentAnswers, patient, readonly = false }: Prop
                         <Container
                             maxWidth={theme.breakpoints.up('md') ? 'md' : 'lg'}
                             sx={{
-                                mt: 5
+                                mt: 10
                             }}
                         >
                             {
